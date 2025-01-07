@@ -33,31 +33,42 @@
                         <a href="about.html" class="nav-item nav-link">Biz haqimizda</a>
                         <a href="contact.html" class="nav-item nav-link">Bog'lanish</a>
                     </div>
-                    
+
                     <div class="ml-auto d-lg-block">
-                        <?php 
-                            if (!isset($_SESSION['user_id'])) {
-                                echo '<a href="login.php">Kirish</a> | <a href="register.php">Ro‘yxatdan o‘tish</a>';
-                            }else {
-                                echo htmlspecialchars($_SESSION['user_name']);
-                                // echo '
-                                // <div style="position: relative; display: inline-block;">
-                                //     <button onclick="toggleDropdown()">Profil</button>
-                                //     <div id="dropdown" style="display: none; position: absolute; top: 100%; right: 0; background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; border-radius: 4px; min-width: 200px; z-index: 1000;">
-                                //         <p style="margin: 10px;">Ism: ' . htmlspecialchars($_SESSION['user_name']) . '</p>
-                                //         <p style="margin: 10px;">Balans: ' . htmlspecialchars($_SESSION['balance']) . ' UZS</p>
-                                //         <a href="logout.php" style="display: block; margin: 10px; text-decoration: none; color: #007bff;">Chiqish</a>
-                                //     </div>
-                                // </div>
-                                // <script>
-                                //     function toggleDropdown() {
-                                //         var dropdown = document.getElementById("dropdown");
-                                //         dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
-                                //     }
-                                // </script>';
-                            }
-                        ?>
+    <?php 
+        if (!isset($_SESSION['user_id'])) {
+            echo '<a href="login.php" class="btn btn-primary me-2">Kirish</a> 
+                  <a href="register.php" class="btn btn-outline-primary">Ro‘yxatdan o‘tish</a>';
+        } else {
+            echo '
+            <div style="position: relative; display: inline-block;">
+                <button class="btn btn-primary btn-outline-secondary" onclick="toggleDropdown()" style="border-radius: 20px; padding: 10px 20px; font-weight: bold; display: flex; align-items: center;">
+                    <i class="fas fa-user-circle" style="margin-right: 8px;"></i> Profil
+                </button>
+                <div id="dropdown" style="display: none; position: absolute; top: 100%; right: 0; background-color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); border-radius: 10px; min-width: 220px; z-index: 1000;">
+                    <div style="padding: 15px; border-bottom: 1px solid #f1f1f1;">
+                        <p style="margin: 0; font-weight: bold; color: #333;">Ism: ' . htmlspecialchars($_SESSION['user_name']) . '</p>
+                        <p style="margin: 5px 0 0 0; color: #666;">Balans: <span style="font-weight: bold; color: #007bff;">' . htmlspecialchars($_SESSION['balance']) . ' UZS</span></p>
                     </div>
+                    <a href="logout.php" style="display: block; padding: 10px 15px; text-decoration: none; color: #007bff; font-weight: bold; text-align: center;">Chiqish</a>
+                </div>
+            </div>
+            <script>
+                function toggleDropdown() {
+                    var dropdown = document.getElementById("dropdown");
+                    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+                }
+                // Dropdownni tashqariga bosganda yopish uchun
+                window.addEventListener("click", function(e) {
+                    var dropdown = document.getElementById("dropdown");
+                    if (!e.target.closest("button") && !e.target.closest("#dropdown")) {
+                        dropdown.style.display = "none";
+                    }
+                });
+            </script>';
+        }
+    ?>
+</div>
                 </div>
             </nav>
         </div>
