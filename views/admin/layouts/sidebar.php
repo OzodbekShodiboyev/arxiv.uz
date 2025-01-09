@@ -2,7 +2,7 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
@@ -28,23 +28,28 @@
 </div>
 <li class="nav-item active">
     <a class="nav-link" href="http://localhost:8000/views/admin/categories/index.php">
-    <i class="fa-solid fa-list"></i>
+    <i class="fas fa-solid fa-list"></i>
         <span>Kategoriyalar</span></a>
 </li>
 <li class="nav-item active">
     <a class="nav-link" href="http://localhost:8000/views/admin/subjects/index.php">
-    <i class="fa-solid fa-list"></i>
+    <i class="fas fa-solid fa-book"></i>
         <span>Fanlar</span></a>
 </li>
 <li class="nav-item active">
     <a class="nav-link" href="http://localhost:8000/views/admin/files/index.php">
-    <i class="fa-solid fa-list"></i>
+    <i class="fas fa-solid fa-file"></i>
         <span>Fayllar</span></a>
 </li>
 <li class="nav-item active">
     <a class="nav-link" href="http://localhost:8000/views/admin/users/index.php">
-    <i class="fa-solid fa-list"></i>
+    <i class="fas fa-solid fa-users"></i>
         <span>Foydalanuvchilar</span></a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="http://localhost:8000/views/admin/admins/index.php">
+    <i class="fas fa-solid fa-user"></i>
+        <span>Administratorlar</span></a>
 </li>
 
 </ul>

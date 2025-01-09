@@ -1,50 +1,4 @@
-<?php
-require '../../../helpers/auth_helper.php';
-requireAdmin(); // Admin kirishini tekshirish
-
-$conn = new mysqli('localhost', 'root', '', 'arxivuz');
-if ($conn->connect_error) {
-    die('Database error: ' . $conn->connect_error);
-}
-
-// CRUD Operations for Subjects
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['add_subject'])) {
-        $name = trim($_POST['name']);
-        if (!empty($name)) {
-            $stmt = $conn->prepare('INSERT INTO subjects (name) VALUES (?)');
-            $stmt->bind_param('s', $name);
-            $stmt->execute();
-            $stmt->close();
-        }
-    }
-
-    if (isset($_POST['edit_subject'])) {
-        $id = $_POST['id'];
-        $name = trim($_POST['name']);
-        if (!empty($name)) {
-            $stmt = $conn->prepare('UPDATE subjects SET name = ? WHERE id = ?');
-            $stmt->bind_param('si', $name, $id);
-            $stmt->execute();
-            $stmt->close();
-        }
-    }
-
-    if (isset($_POST['delete_subject'])) {
-        $id = $_POST['id'];
-        $stmt = $conn->prepare('DELETE FROM subjects WHERE id = ?');
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $stmt->close();
-    }
-
-    header('Location: index.php');
-    exit;
-}
-
-// Fetch Subjects
-$subjects = $conn->query('SELECT * FROM subjects');
-?>
+<?php require_once 'controller.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,8 +19,8 @@ $subjects = $conn->query('SELECT * FROM subjects');
         <div id="content">
             <?php require_once '../layouts/topbar.php'; ?>
             <div class="container-fluid">
-                <h1>Subjects</h1>
-                <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSubjectModal">Add Subject</button>
+                <h1>Fanlar</h1>
+                <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addSubjectModal">Fan qo'shish</button>
 
                 <table class="table">
                     <thead>
@@ -82,8 +36,8 @@ $subjects = $conn->query('SELECT * FROM subjects');
                                 <td><?= $subject['id'] ?></td>
                                 <td><?= htmlspecialchars($subject['name']) ?></td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editSubjectModal<?= $subject['id'] ?>">Edit</button>
-                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteSubjectModal<?= $subject['id'] ?>">Delete</button>
+                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editSubjectModal<?= $subject['id'] ?>">Tahrirlash</button>
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteSubjectModal<?= $subject['id'] ?>">O'chirish</button>
                                 </td>
                             </tr>
 
